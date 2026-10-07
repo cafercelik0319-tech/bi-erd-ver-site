@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="tr" class="light">
 <head>
   <meta charset="UTF-8">
@@ -26,6 +26,25 @@
   <style>
     img { max-width: 100%; height: auto; }
   </style>
+  <style>
+  /* Telefonda yatay taşmayı engeller ve kartları alt alta hizalar */
+  @media (max-width: 768px) {
+    body { overflow-x: hidden; }
+    header > div { flex-direction: column; align-items: stretch !important; }
+    header input { width: 100% !important; }
+    main { grid-template-columns: 1fr !important; }
+    /* Tablodaki sütunların mobilde sıkışmasını engeller */
+    #machineTableBody > div, #harvesterTableBody > div, #boatTableBody > div {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 0.5rem !important;
+      /* Mobilde görseller ve metinler tam genişlik kaplasın */
+    #machineTableBody > div > div:first-child { width: 100% !important; height: 180px !important; }
+    #machineTableBody > div > div { width: 100% !important; text-align: left !important; }
+    }
+  }
+</style>
 </head>
 <body class="bg-[#f4f6f9] dark:bg-slate-950 text-gray-800 dark:text-slate-100 flex flex-col min-h-screen transition-colors duration-200">
 
