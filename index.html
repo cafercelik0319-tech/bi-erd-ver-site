@@ -1,9 +1,13 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr" class="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ÇELİK GALERİ | Tarım & Biçerdöver Showroom</title>
+  <title>ÇELİK SHOWROOM | Tarım & Biçerdöver Galerisi</title>
+  <!-- Google Fonts: Orbitron (Neon Fontu) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -25,130 +29,268 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     img { max-width: 100%; height: auto; }
-  </style>
-  <style>
-  /* Telefonda yatay taşmayı engeller ve kartları alt alta hizalar */
-  @media (max-width: 768px) {
-    body { overflow-x: hidden; }
-    header > div { flex-direction: column; align-items: stretch !important; }
-    header input { width: 100% !important; }
-    main { grid-template-columns: 1fr !important; }
-    /* Tablodaki sütunların mobilde sıkışmasını engeller */
-    #machineTableBody > div, #harvesterTableBody > div, #boatTableBody > div {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: flex-start !important;
-      gap: 0.5rem !important;
-      /* Mobilde görseller ve metinler tam genişlik kaplasın */
-    #machineTableBody > div > div:first-child { width: 100% !important; height: 180px !important; }
-    #machineTableBody > div > div { width: 100% !important; text-align: left !important; }
+
+    /* --- AFİLİ YANIP SÖNEN NEON IŞIK EFEKTLERİ --- */
+    .neon-text-blue {
+      font-family: 'Orbitron', sans-serif;
+      color: #e0f7ff;
+      text-shadow:
+        0 0 4px #fff,
+        0 0 10px #00f0ff,
+        0 0 20px #00f0ff,
+        0 0 35px #0077ff,
+        0 0 60px #0077ff;
+      animation: neonFlicker 3.5s infinite alternate ease-in-out;
     }
-  }
-</style>
+
+    .neon-text-gold {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff9e6;
+      text-shadow:
+        0 0 4px #fff,
+        0 0 10px #ffb703,
+        0 0 22px #fb8500,
+        0 0 40px #fb8500,
+        0 0 70px #d97706;
+      animation: neonPulse 2s infinite alternate ease-in-out;
+    }
+
+    /* Arama kutusu neon odaklama efekti */
+    .neon-search-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #e6a817, 0 0 16px rgba(230, 168, 23, 0.45);
+    }
+
+    /* Rozet neon parıltısı */
+    .badge-glow-amber {
+      box-shadow: 0 0 10px rgba(230, 168, 23, 0.7);
+    }
+    .badge-glow-red {
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
+    }
+
+    @keyframes neonFlicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        opacity: 1;
+        text-shadow:
+          0 0 4px #fff,
+          0 0 10px #00f0ff,
+          0 0 20px #00f0ff,
+          0 0 35px #0077ff,
+          0 0 60px #0077ff;
+      }
+      20%, 24%, 55% {
+        opacity: 0.45;
+        text-shadow: none;
+      }
+    }
+
+    @keyframes neonPulse {
+      0% {
+        filter: brightness(1) drop-shadow(0 0 8px rgba(251, 133, 0, 0.6));
+      }
+      100% {
+        filter: brightness(1.25) drop-shadow(0 0 20px rgba(255, 183, 3, 0.95));
+      }
+    }
+
+    /* --- KAYAN KAFİYE ŞERİDİ (TICKER) --- */
+    .ticker-wrapper {
+      background: linear-gradient(90deg, #070e18 0%, #101c2e 50%, #070e18 100%);
+      border-bottom: 1px solid rgba(230, 168, 23, 0.35);
+      border-top: 1px solid rgba(230, 168, 23, 0.2);
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .ticker-content {
+      display: inline-flex;
+      white-space: nowrap;
+      animation: tickerAnimation 24s linear infinite;
+    }
+
+    .ticker-wrapper:hover .ticker-content {
+      animation-play-state: paused; /* Üzerine gelince dursun */
+    }
+
+    @keyframes tickerAnimation {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Mobil uyumluluk */
+    @media (max-width: 768px) {
+      body { overflow-x: hidden; }
+      header > div { flex-direction: column; align-items: stretch !important; }
+      header input { width: 100% !important; }
+      main { grid-template-columns: 1fr !important; }
+      #machineTableBody > div, #harvesterTableBody > div, #boatTableBody > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.5rem !important;
+      }
+      #machineTableBody > div > div:first-child { width: 100% !important; height: 180px !important; }
+      #machineTableBody > div > div { width: 100% !important; text-align: left !important; }
+    }
+  </style>
 </head>
 <body class="bg-[#f4f6f9] dark:bg-slate-950 text-gray-800 dark:text-slate-100 flex flex-col min-h-screen transition-colors duration-200">
 
-  <!-- Üst Bar -->
-  <header class="bg-[#0b1626] dark:bg-slate-900 text-white shadow-xl sticky top-0 z-30 border-b-4 border-[#e6a817]">
+  <!-- Üst Bar (Header) -->
+  <header class="bg-[#0b1626] dark:bg-slate-900 text-white shadow-xl sticky top-0 z-30 border-b-2 border-[#e6a817]/70 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
       
-      <!-- Logo ve Galeri Adı -->
-      <div class="flex items-center gap-3 cursor-pointer" onclick="resetFilters()">
+      <!-- Logo ve Galeri Adı (Neon Işıklı) -->
+      <div class="flex items-center gap-3 cursor-pointer select-none" onclick="resetFilters()">
         <img 
           src="logo.jpeg" 
-          onerror="this.src='logo.jpg'"
+          onerror="this.src='logo.jpg'" 
           alt="ÇELİK GALERİ Logo" 
-          class="w-12 h-12 object-contain rounded-full shadow-md border border-[#e6a817]/60 bg-black/40"
+          class="w-11 h-11 object-contain rounded-full shadow-lg border border-[#e6a817]/60 bg-black/40 hover:scale-105 transition"
         >
         <div>
-          <span class="text-xl sm:text-2xl font-black tracking-wider text-white uppercase block leading-none">
-            ÇELİK <span class="text-[#e6a817]">GALERİ</span>
+          <span class="text-xl sm:text-2xl font-black tracking-wider uppercase block leading-none">
+            <span class="neon-text-blue">ÇELİK</span>
+            <span class="neon-text-gold ml-1">GALERİ</span>
           </span>
-          <span class="text-[10px] text-amber-300 font-semibold tracking-widest uppercase block mt-0.5">
+          <span class="text-[9px] text-amber-300/90 font-bold tracking-widest uppercase block mt-1">
             Tarım & Biçerdöver &bull; Koparan Köyü
           </span>
         </div>
       </div>
 
-      <!-- Arama Kutusu -->
-      <div class="flex-1 max-w-xl flex">
+      <!-- Arama Kutusu (Neon Focus Etkisi) -->
+      <div class="flex-1 max-w-xl flex relative">
         <input 
           id="searchInput" 
           type="text" 
           placeholder="Model veya ilan ara (TC5070, JD 5725, CX8.80, Koparan)..." 
-          class="w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-100 dark:bg-slate-800 rounded-l focus:outline-none focus:ring-2 focus:ring-[#e6a817]"
+          class="neon-search-input w-full px-4 py-2 text-sm text-gray-900 dark:text-gray-100 bg-white/95 dark:bg-slate-800/90 border border-slate-700 rounded-l focus:border-[#e6a817] transition-all"
         >
-        <button id="searchBtn" class="bg-[#e6a817] hover:bg-yellow-500 text-[#0b1626] px-5 font-black text-sm rounded-r flex items-center gap-2 transition">
-          <i class="fa-solid fa-magnifying-glass"></i> Ara
+        <button id="searchBtn" class="bg-[#e6a817] hover:bg-yellow-500 text-[#0b1626] px-5 font-black text-sm rounded-r flex items-center gap-2 transition shadow">
+          <i class="fa-solid fa-magnifying-glass"></i> <span class="hidden sm:inline">Ara</span>
         </button>
       </div>
 
-      <!-- Sağ Butonlar -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        <button onclick="toggleDarkMode()" title="Tema Değiştir" class="bg-slate-800 hover:bg-slate-700 text-white p-2 rounded-lg text-sm transition">
+      <!-- Sağ Butonlar (Sadeleştirilmiş Cam/Glass Stili) -->
+      <div class="flex items-center gap-2 sm:gap-2.5">
+        <button onclick="toggleDarkMode()" title="Tema Değiştir" class="bg-slate-800/80 hover:bg-slate-700 text-white p-2 rounded-lg text-sm transition border border-slate-700">
           <i id="themeIcon" class="fa-solid fa-moon"></i>
         </button>
 
-        <button onclick="openCompareModal()" class="bg-amber-600 hover:bg-amber-700 text-white text-xs sm:text-sm font-bold px-3 py-2 rounded flex items-center gap-1.5 shadow">
-          <i class="fa-solid fa-scale-balanced"></i>
+        <!-- Kıyasla Butonu -->
+        <button onclick="openCompareModal()" class="bg-slate-800/70 hover:bg-slate-700 border border-amber-500/30 text-slate-200 text-xs sm:text-sm font-semibold px-3 py-2 rounded-lg flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-scale-balanced text-amber-400"></i>
           <span class="hidden sm:inline">Kıyasla</span>
-          <span id="compareCountBadge" class="bg-black/40 text-white text-[10px] px-1.5 py-0.2 rounded-full">0</span>
+          <span id="compareCountBadge" class="bg-amber-500 text-[#0b1626] font-black text-[10px] px-1.5 py-0.2 rounded-full badge-glow-amber">0</span>
         </button>
 
-        <button id="favFilterBtn" onclick="toggleFavoriteFilter()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs sm:text-sm font-semibold px-3 py-2 rounded flex items-center gap-1.5 transition">
-          <i class="fa-solid fa-heart text-red-400"></i>
+        <!-- Favoriler Butonu -->
+        <button id="favFilterBtn" onclick="toggleFavoriteFilter()" class="bg-slate-800/70 hover:bg-slate-700 border border-red-500/30 text-slate-200 text-xs sm:text-sm font-semibold px-3 py-2 rounded-lg flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-heart text-red-500"></i>
           <span class="hidden sm:inline">Favoriler</span>
-          <span id="favCountBadge" class="bg-red-500 text-white text-[10px] px-1.5 py-0.2 rounded-full">0</span>
+          <span id="favCountBadge" class="bg-red-500 text-white font-bold text-[10px] px-1.5 py-0.2 rounded-full badge-glow-red">0</span>
         </button>
 
-        <button onclick="openCreateModal()" class="bg-[#e6a817] hover:bg-yellow-500 text-[#0b1626] text-xs sm:text-sm font-black px-4 py-2 rounded flex items-center gap-1.5 shadow transition">
+        <!-- İlan Ekle (Öne Çıkan Ana Aksiyon) -->
+        <button onclick="openCreateModal()" class="bg-[#e6a817] hover:bg-yellow-500 text-[#0b1626] text-xs sm:text-sm font-black px-4 py-2 rounded-lg flex items-center gap-1.5 shadow-lg shadow-amber-500/20 transition hover:scale-105 active:scale-95">
           <i class="fa-solid fa-plus text-xs"></i> <span>İlan Ekle</span>
         </button>
       </div>
     </div>
   </header>
 
+  <!-- ================= KAYAN KAFİYELİ SLOGAN ŞERİDİ (TICKER) ================= -->
+  <div class="ticker-wrapper py-1.5 text-xs text-amber-300 font-bold tracking-wider select-none">
+    <div class="ticker-content items-center gap-8">
+      <!-- 1. Tur -->
+      <span class="flex items-center gap-2">
+        <i class="fa-solid fa-wheat-awn text-amber-400"></i>
+        <span>Tarlada bereket, hasatta güven &bull; <strong class="text-white font-black tracking-normal">ÇELİK TARIM</strong>'la güler yüzün her dönem!</span>
+      </span>
+      <span class="text-amber-500/50">&bull;&bull;&bull;</span>
+      <span class="flex items-center gap-2">
+        <i class="fa-solid fa-tractor text-amber-400"></i>
+        <span>Toprağın gücü, harmanın bereketi &bull; <strong class="text-[#e6a817] font-black">Koparan Köyü</strong>'nde biçerdöver asaleti!</span>
+      </span>
+      <span class="text-amber-500/50">&bull;&bull;&bull;</span>
+      <span class="flex items-center gap-2">
+        <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+        <span>Garantili makineler, ekspertizli güç &bull; Çelik Galeri'yle sezonda kalmazsın geç!</span>
+      </span>
+      <span class="text-amber-500/50">&bull;&bull;&bull;</span>
+
+      <!-- 2. Tur (Kesintisiz döngü için tekrarı) -->
+      <span class="flex items-center gap-2">
+        <i class="fa-solid fa-wheat-awn text-amber-400"></i>
+        <span>Tarlada bereket, hasatta güven &bull; <strong class="text-white font-black tracking-normal">ÇELİK TARIM</strong>'la güler yüzün her dönem!</span>
+      </span>
+      <span class="text-amber-500/50">&bull;&bull;&bull;</span>
+      <span class="flex items-center gap-2">
+        <i class="fa-solid fa-tractor text-amber-400"></i>
+        <span>Toprağın gücü, harmanın bereketi &bull; <strong class="text-[#e6a817] font-black">Koparan Köyü</strong>'nde biçerdöver asaleti!</span>
+      </span>
+      <span class="text-amber-500/50">&bull;&bull;&bull;</span>
+      <span class="flex items-center gap-2">
+        <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+        <span>Garantili makineler, ekspertizli güç &bull; Çelik Galeri'yle sezonda kalmazsın geç!</span>
+      </span>
+      <span class="text-amber-500/50">&bull;&bull;&bull;</span>
+    </div>
+  </div>
+
   <!-- Galeri Prestij Banner (Showroom Tanıtımı) -->
-  <section class="bg-gradient-to-r from-[#070e18] via-[#0b1626] to-[#12223b] text-white py-6 border-b border-amber-500/20 shadow-md">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+  <section class="bg-gradient-to-r from-[#060c14] via-[#0b1626] to-[#111f33] text-white py-4 sm:py-5 border-b border-amber-500/20 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
       
-      <!-- Sol: Tanıtım & Slogan -->
-      <div class="flex items-center gap-5">
-        <img 
-          src="logo.jpeg" 
-          onerror="this.src='logo.jpg'"
-          alt="Çelik Galeri Amblem" 
-          class="w-20 h-20 md:w-24 md:h-24 object-contain rounded-full border-2 border-amber-400/50 p-1 bg-black/40 filter drop-shadow-[0_4px_12px_rgba(230,168,23,0.4)] hidden sm:block"
-        >
+      <!-- Sol: Rozet & Kurumsal Başlık -->
+      <div class="flex items-center gap-4 text-center md:text-left">
+        <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400/20 to-black/60 border border-amber-400/40 items-center justify-center text-amber-400 shadow-inner flex-shrink-0">
+          <i class="fa-solid fa-wheat-awn text-2xl"></i>
+        </div>
+
         <div>
-          <div class="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 px-2.5 py-0.5 rounded-full text-[11px] text-[#e6a817] font-bold tracking-widest uppercase">
-            <i class="fa-solid fa-star text-[10px]"></i> Toprağın Gücü, Emeğin Değeri <i class="fa-solid fa-star text-[10px]"></i>
+          <div class="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 px-2.5 py-0.5 rounded-full text-[10px] text-[#e6a817] font-bold tracking-widest uppercase">
+            <i class="fa-solid fa-certificate text-[9px]"></i> Koparan Köyü / Gölbaşı Merkez Vitrini
           </div>
-          <h1 class="text-xl md:text-3xl font-black mt-1.5 text-white tracking-tight">
-            ÇELİK TARIM & BİÇERDÖVER GALERİSİ
+          <h1 class="text-xl md:text-2xl font-black mt-1 text-white tracking-wide">
+            ÇELİK TARIM SHOWROOM
           </h1>
-          <p class="text-xs text-slate-300 mt-1 max-w-xl">
-            Ankara Gölbaşı / Koparan Köyü merkezli; New Holland biçerdöverler, John Deere traktörler ve garantili 2. el tarım makineleri showroom vitrini.
+          <p class="text-xs text-slate-300 max-w-xl line-clamp-2 md:line-clamp-none mt-0.5">
+            New Holland biçerdöverler, John Deere traktörler ve ekspertiz onaylı 2. el tarım makineleri.
           </p>
         </div>
       </div>
 
-      <!-- Sağ: Galeri İletişim Rozeti -->
-      <div class="flex items-center gap-3 w-full md:w-auto justify-end">
-        <div class="bg-slate-900/90 border border-amber-500/30 p-3 rounded-lg text-center flex-1 md:flex-initial">
-          <span class="block text-xl font-black text-[#e6a817]" id="statTotalCount">0</span>
-          <span class="text-[10px] text-slate-300">Galerideki Makine</span>
+      <!-- Sağ: Hızlı İletişim & Rozet Grubu -->
+      <div class="flex items-center gap-2.5 w-full md:w-auto justify-center md:justify-end flex-wrap sm:flex-nowrap">
+        <div class="bg-slate-900/90 border border-amber-500/30 px-3.5 py-2 rounded-lg text-center flex-1 sm:flex-initial shadow">
+          <span class="block text-lg font-black text-[#e6a817] leading-tight" id="statTotalCount">0</span>
+          <span class="text-[10px] text-slate-300">Hazır Makine</span>
         </div>
-        <div class="bg-slate-900/90 border border-amber-500/30 p-3 rounded-lg text-center flex-1 md:flex-initial">
-          <span class="block text-xl font-black text-emerald-400"><i class="fa-solid fa-circle-check"></i> Onaylı</span>
-          <span class="text-[10px] text-slate-300">Ekspertizli Araçlar</span>
+
+        <div class="bg-slate-900/90 border border-amber-500/30 px-3.5 py-2 rounded-lg text-center flex-1 sm:flex-initial shadow">
+          <span class="block text-lg font-black text-emerald-400 leading-tight"><i class="fa-solid fa-shield-check"></i> Onaylı</span>
+          <span class="text-[10px] text-slate-300">Ekspertizli</span>
         </div>
+
+        <!-- Hızlı WhatsApp İletişim Rozeti -->
+        <a href="https://wa.me/905325554433" target="_blank" class="bg-emerald-600/90 hover:bg-emerald-600 border border-emerald-400/50 px-3.5 py-2 rounded-lg text-center flex-1 sm:flex-initial transition shadow">
+          <span class="block text-lg font-black text-white leading-tight"><i class="fa-brands fa-whatsapp"></i></span>
+          <span class="text-[10px] text-emerald-100 font-bold whitespace-nowrap">Hızlı İletişim</span>
+        </a>
       </div>
 
     </div>
   </section>
 
-  <!-- Filtre Kategori Yolu -->
+  <!-- Filtre Kategori Yolu (Breadcrumb) -->
   <div class="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-800 py-2 text-xs text-gray-500 dark:text-gray-400">
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
       <div class="flex items-center gap-1">
@@ -169,7 +311,7 @@
     <aside class="md:col-span-1 space-y-4">
       
       <!-- Makine Kategorileri & Modeller -->
-      <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded p-4 shadow-sm">
+      <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-lg p-4 shadow-sm">
         <h3 class="text-xs font-bold text-[#0b1626] dark:text-amber-400 uppercase tracking-wider border-b dark:border-slate-800 pb-2 mb-3 flex items-center justify-between">
           <span>Galeri Araç Grupları</span>
           <span class="text-[10px] text-amber-500 font-bold">Modeller</span>
@@ -178,7 +320,7 @@
       </div>
 
       <!-- Fiyat ve Yıl Filtresi -->
-      <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded p-4 shadow-sm space-y-3">
+      <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-lg p-4 shadow-sm space-y-3">
         <h3 class="text-xs font-bold text-[#0b1626] dark:text-amber-400 uppercase tracking-wider border-b dark:border-slate-800 pb-2">Fiyat Aralığı (₺)</h3>
         <div class="grid grid-cols-2 gap-2">
           <input type="number" id="minPriceInput" placeholder="Min ₺" class="border dark:border-slate-700 dark:bg-slate-800 dark:text-white rounded px-2 py-1.5 text-xs focus:ring-1 focus:ring-[#e6a817] focus:outline-none">
@@ -197,7 +339,7 @@
       </div>
 
       <!-- Durum / Lokasyon -->
-      <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded p-4 shadow-sm">
+      <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-lg p-4 shadow-sm">
         <h3 class="text-xs font-bold text-[#0b1626] dark:text-amber-400 uppercase tracking-wider border-b dark:border-slate-800 pb-2 mb-3">Durum & Lokasyon</h3>
         <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <label class="flex items-center gap-2 cursor-pointer">
@@ -212,7 +354,7 @@
 
     <!-- Sağ İlan Listesi -->
     <section class="md:col-span-3">
-      <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded p-3 mb-3 flex items-center justify-between text-xs sm:text-sm shadow-sm">
+      <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-lg p-3 mb-3 flex items-center justify-between text-xs sm:text-sm shadow-sm">
         <span id="listingSummary" class="text-gray-600 dark:text-gray-300 font-medium">Araçlar listeleniyor...</span>
         <div class="flex items-center gap-2">
           <label for="sortSelect" class="text-gray-500 dark:text-gray-400 hidden sm:inline">Sıralama:</label>
@@ -226,7 +368,7 @@
         </div>
       </div>
 
-      <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded shadow-sm overflow-hidden">
+      <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-lg shadow-sm overflow-hidden">
         <div class="hidden md:grid grid-cols-12 gap-2 bg-[#f0f2f5] dark:bg-slate-800/60 p-2.5 text-xs font-bold text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-slate-800">
           <div class="col-span-2">Görsel</div>
           <div class="col-span-4">Makine Modeli & Bilgisi</div>
@@ -251,10 +393,10 @@
             <img src="logo.jpeg" onerror="this.src='logo.jpg'" alt="Çelik Galeri" class="w-8 h-8 object-contain rounded-full">
             <span class="text-xl font-black text-white uppercase tracking-wider">ÇELİK <span class="text-[#e6a817]">GALERİ</span></span>
           </div>
-          <p class="text-slate-400 mt-1.5">Koparan Köyü, Gölbaşı / Ankara &bull; Tarım, Biçerdöver ve Hayvancılık Ekipmanları Merkezi.</p>
+          <p class="text-slate-400 mt-1.5">Koparan Köyü, Gölbaşı / Ankara &bull; Tarım, Biçerdöver ve Traktör Merkezi.</p>
         </div>
         <div class="text-center text-slate-400">
-          <p>&copy; 2026 ÇELİK GALERİ Tüm hakları saklıdır.</p>
+          <p>&copy; 2026 ÇELİK SHOWROOM. Tüm hakları saklıdır.</p>
           <p class="text-[11px] text-amber-400 font-semibold mt-0.5">Toprağın Gücü, Emeğin Değeri</p>
         </div>
         
@@ -309,7 +451,7 @@
               <div><i class="fa-solid fa-location-dot text-amber-500"></i> <span id="modalLocation">Ankara / Gölbaşı (Koparan Köyü)</span></div>
             </div>
 
-            <!-- Ziraat Tarım Kredisi Hesaplama -->
+            <!-- Tarım Kredisi Hesaplama -->
             <div class="bg-amber-50/80 dark:bg-slate-800/80 border border-amber-300 dark:border-slate-700 rounded-lg p-3.5 space-y-2.5">
               <div class="flex items-center justify-between text-xs font-bold text-[#0b1626] dark:text-amber-400">
                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-tractor"></i> Çelik Galeri &bull; Tarım Kredisi Hesapla</span>
@@ -525,9 +667,7 @@
         currency: "TRY",
         location: "Koparan Köyü / Gölbaşı",
         photoCount: 3,
-        // Ana kapak fotoğrafı:
         image: "tc5070/5070-1.jpeg",
-        // Tıklayınca açılan detay modalındaki galeri:
         gallery: [
           "tc5070/5070-1.jpeg",
           "tc5070/5070-2.jpeg",
@@ -550,9 +690,7 @@
         currency: "TRY",
         location: "Koparan Köyü / Gölbaşı",
         photoCount: 2,
-        // Ana kapak resmi:
         image: "jd5725/5725-1.jpeg",
-        // Detay galeri resimleri:
         gallery: [
           "jd5725/5725-1.jpeg",
           "jd5725/5725-2.jpeg",
@@ -575,9 +713,7 @@
         currency: "TRY",
         location: "Koparan Köyü / Gölbaşı",
         photoCount: 1,
-        // Ana kapak resmi:
         image: "tc590/590-1.png",
-        // Detay galeri resimleri:
         gallery: [
           "tc590/590-1.png",
         ],
@@ -598,9 +734,7 @@
         currency: "TRY",
         location: "Koparan Köyü / Gölbaşı",
         photoCount: 2,
-        // Ana kapak resmi:
         image: "cx880/880-1.png",
-        // Detay galeri resimleri:
         gallery: [
           "cx880/880-1.png",
         ],
@@ -621,9 +755,7 @@
         currency: "TRY",
         location: "Koparan Köyü / Gölbaşı",
         photoCount: 1,
-        // Ana kapak resmi:
         image: "cr990/990-1.jpg",
-        // Detay galeri resimleri:
         gallery: [
           "cr990/990-1.jpg",
         ],
@@ -833,7 +965,6 @@
         return;
       }
 
-      // Hasat Kredisi Hesabı
       const yearlyRate = 0.195;
       const years = months / 12;
       const totalRepay = loanAmount * (1 + (yearlyRate * years));
